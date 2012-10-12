@@ -16,6 +16,11 @@ import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URL;
 
 
 
@@ -51,7 +56,31 @@ public class ViewerMain {
 		View.setLayout(vl);
 		windowContent.add("Center", View);
 
-		//Image from xml 
+		// download Image from xml and save on HD 
+		
+		public static void SaveImage (String [] args)  throws Exception  {
+		
+			String imageUrl = "http://d24w6bsrhbeh9d.cloudfront.net/photo/5582120_460s.jpg";
+			String destinationFile  = "image_01.jpeg";
+			saveImage (imageUrl, destinationFile);			
+		}
+		
+		public static void saveImage (String imageUrl, String destinationFile) throws IOException {
+		URL url = new URL (imageUrl);
+		InputStream is = url.openStream();
+		OutputStream os = new FileOutputStream(destinationFile);
+		
+		byte [] b = new byte [20848];
+		int length;
+		
+		while ((length = is.read(b)) !=-1) {
+			os.white(b, 0, length);
+	
+			}
+		
+		is. close();
+		os.close ();
+		}
 		
 		//Adding  button next and previous
 		
